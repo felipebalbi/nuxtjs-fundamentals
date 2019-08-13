@@ -1,24 +1,24 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxt-fundamentals
-      </h1>
-      <h2 class="subtitle">
-        My terrific Nuxt.js project
-      </h2>
-      <div class="links">
-        <nuxt-link
-          v-for="post in posts"
-          :to="{name: 'posts-id', params: { id: post.id }}"
-          :key="post.id"
-          class="button--grey">
-          {{post.title}}
-        </nuxt-link>
-      </div>
+<div class="container">
+  <div>
+    <logo />
+    <h1 class="title">
+      Nuxt Fundamentals
+    </h1>
+    <h2 class="subtitle">
+      My terrific Nuxt.js project
+    </h2>
+    <div class="links">
+      <nuxt-link
+        v-for="post in posts"
+        :to="{name: 'posts-id', params: { id: post.id }}"
+        :key="post.id"
+        class="button--grey">
+        {{post.title}}
+      </nuxt-link>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -28,7 +28,19 @@ export default {
   components: {
     Logo
   },
-
+  
+  head () {
+    return {
+      title: 'Home Page',
+      meta: [
+        { name: 'twitter:title', content: 'Nuxt Fundamentals' },
+        { name: 'twitter:description', content: 'My crappy Nuxt.js project' },
+        { name: 'twitter:image', content: 'https://i.imgur.com/UYP2umJ.png'},
+        { name: 'twitter:card', content: 'summary_large_image' }
+      ]
+    }
+  },
+  
   computed: {
     posts () {
       return this.$store.state.posts.all
@@ -59,7 +71,7 @@ export default {
     word-spacing: 5px;
 }
 .links {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 </style>
 
